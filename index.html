@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Posting data from html to MongoDB Atlas</h1>
-    <form class="container" method="post" action="/">
+    <form class="container" method="post" action="/api/addNote">
         <div class="form-group">
             <input class="form-control" name="title" placeholder="Username or Title">
         </div>
@@ -24,7 +24,7 @@
 
     <script>
     // Fetch data from server and display it
-    fetch('/notes')
+    fetch('/api/notes')
       .then(response => response.json())
       .then(data => {
         const notesElement = document.getElementById('notes');
