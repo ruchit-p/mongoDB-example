@@ -1,9 +1,8 @@
-// /api/notes.js
+// addNote.js
 const mongoose = require('mongoose');
-//... MongoDB setup
-const Note = mongoose.model("Note", noteSchema);
+const { noteSchema } = require('../../lib/models');
 
-module.exports = async (req, res) => {
-  const notes = await Note.find({});
-  res.json(notes);
-};
+
+const Note = mongoose.model('Note', noteSchema);
+
+// rest of your code
