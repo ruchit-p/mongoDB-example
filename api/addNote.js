@@ -1,13 +1,28 @@
 // /api/addNote.js
 const mongoose = require('mongoose');
-//... MongoDB setup
-const Note = mongoose.model("Note", noteSchema);
+require('dotenv').config();
 
-module.exports = async (req, res) => {
-  const newNote = new Note({
-    title: req.body.title,
-    content: req.body.content
-  });
-  await newNote.save();
-  res.json({status: 'Note added'});
+const noteSchema = new mongoose.Schema({
+    title: String,
+    content: String
+});
+
+const Note = mongoose.model('Note', noteSchema);
+
+const dbPassword = process.env.PASSWORD;
+mongoose.connect(`mongodb+srv://admin:${dbPassword}@cluster0.mgwl11z.mongodb.net/`, {useNewUrlParser: true, useUnifiedTopology: true});
+
+module.exports = (req, res) => {
+    const newNote = new Note({
+        title: req.body.title,
+        content: req.body.content
+    });
+
+    newNote.save((err) => {
+        if (err) {
+            res.status(500).json({error: 'Failed to save note'});
+        } else {
+            res.status(200).json({message: 'Note added successfully'});
+        }
+    });
 };
