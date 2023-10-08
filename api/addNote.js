@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const { noteSchema } = require('../../lib/models');
+const { noteSchema } = require('../lib/models');
 
 const Note = mongoose.model('Note', noteSchema);
 
