@@ -1,6 +1,6 @@
 module.exports = async (req, res) => {
     try {
-      await mongoose.connect(`mongodb+srv://admin:${pass}@cluster0.mgwl11z.mongodb.net/`, { useNewUrlParser: true, useUnifiedTopology: true });
+      await mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
       await mongoose.connection.close();
       res.status(200).json({ status: 'ok' });
     } catch (error) {

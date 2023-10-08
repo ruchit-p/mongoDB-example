@@ -8,8 +8,8 @@ require('dotenv').config();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json()); // for parsing application/json
 
-let pass = process.env.PASSWORD;
-mongoose.connect(`mongodb+srv://admin:${pass}@cluster0.mgwl11z.mongodb.net/`, {useNewUrlParser: true, useUnifiedTopology: true});
+
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 // Create a data schema
 const noteSchema = {
