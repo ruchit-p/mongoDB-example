@@ -16,8 +16,10 @@ module.exports = async (req, res) => {
   try {
     // Connect to MongoDB using the environment variable from Vercel
     const pass = process.env.PASSWORD;
-    await mongoose.connect(`mongodb+srv://admin:${pass}@cluster0.mgwl11z.mongodb.net/`, { useNewUrlParser: true, useUnifiedTopology: true });
-
+    await mongoose.connect(`mongodb+srv://admin:${pass}@cluster0.mgwl11z.mongodb.net/`, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Successfully connected to MongoDB'))
+    .catch(err => console.error('Failed to connect to MongoDB:', err));
+  
     // Fetch notes
     const notes = await Note.find({});
 

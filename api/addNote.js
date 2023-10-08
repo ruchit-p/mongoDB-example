@@ -1,13 +1,15 @@
 // /api/addNote.js
 const mongoose = require('mongoose');
-require('dotenv').config();
+require('dotenv').config()
 
 const { noteSchema } = require('../lib/models');
 
 const Note = mongoose.model('Note', noteSchema);
 
 const dbPassword = process.env.PASSWORD;
-mongoose.connect(`mongodb+srv://admin:${dbPassword}@cluster0.mgwl11z.mongodb.net/`, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(`mongodb+srv://admin:${pass}@cluster0.mgwl11z.mongodb.net/`, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Successfully connected to MongoDB'))
+  .catch(err => console.error('Failed to connect to MongoDB:', err));
 
 module.exports = (req, res) => {
     const newNote = new Note({
